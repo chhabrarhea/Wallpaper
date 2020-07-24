@@ -20,7 +20,7 @@ public class functions {
                 .beginTransaction()
                 .replace(R.id.myFrame,fragment).commit();
     }
-    public static final String apiKey="cpusUsfe-EqPSlCf68ogJQxQTagqxrgJRBPX68ql9oo";
+    public static final String apiKey="";
     public static boolean setWallpaper(Activity activity, Bitmap bitmap){
         DisplayMetrics metrics = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
