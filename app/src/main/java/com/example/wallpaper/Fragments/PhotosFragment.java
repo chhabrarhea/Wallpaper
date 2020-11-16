@@ -37,11 +37,13 @@ public class PhotosFragment extends Fragment   {
     private static RecyclerView recyclerView;
     public static List<photo> photos;
     static ProgressBar progressBar;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentPhotosBinding binding=FragmentPhotosBinding.inflate(getLayoutInflater());
         View root=binding.getRoot();
         photos=new ArrayList<>();
+
         recyclerView=binding.photosRecyclerView;
         progressBar=binding.photosProgress;
         adapter= new PhotoAdapter(getContext(),photos);
@@ -59,7 +61,7 @@ public class PhotosFragment extends Fragment   {
     {
      Retrofit retrofit = Client.getClient();
      ApiService apiService=retrofit.create(ApiService.class);
-        Call <List<photo>> call=apiService.getPhotos();
+        Call <List<photo>> call=apiService.getPhotos(2,30);
         call.enqueue(new Callback<List<photo>>() {
             @Override
             public void onResponse(Call<List<photo>> call, Response<List<photo>> response) {

@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 
 public interface ApiService {
     @GET("photos/")
-    Call<List<photo>> getPhotos();
+    Call<List<photo>> getPhotos(@Query("page") int page,@Query("per_page") int integers);
 
     @GET("collections/{id}/photos")
     Call<List<photo>> getPhotosOfCollection(@Path("id") int id);

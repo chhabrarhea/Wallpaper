@@ -7,8 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
+import android.content.Intent;
 import com.bumptech.glide.Glide;
+import com.example.wallpaper.Activities.CollectionActivity;
 import com.example.wallpaper.R;
 import com.example.wallpaper.Utils.SquareImage;
 import com.example.wallpaper.databinding.CollectionsItemBinding;
@@ -53,13 +54,22 @@ public class CollectionAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        Collection collection = (Collection) collections.get(i);
+        final Collection collection = (Collection) collections.get(i);
         CollectionsItemBinding binding=CollectionsItemBinding.bind(view);
         if(collection.getTitle() != null){
             Log.d("Title", collection.getTitle());
             holder.title.setText(collection.getTitle());
 
         }
+        holder.collectionPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, CollectionActivity.class);
+                intent.putExtra("id",collection.getId());
+                intent.putExtra("name",collection.getTitle());
+                context.startActivity(intent);
+            }
+        });
         holder.totalPhotos.setText(String.valueOf(collection.getTotalPhotos()) + " photos");
         Glide
                 .with(context)
@@ -77,7 +87,6 @@ public class CollectionAdapter extends BaseAdapter {
             collectionPhoto=binding.itemCollectionPhoto;
             title=binding.itemCollectionTitle;
             totalPhotos=binding.itemCollectionTotalPhotos;
-
         }
     }
 }
